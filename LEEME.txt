@@ -1,0 +1,27 @@
+PARAFRÁN · EXPERIENCIA 3D WEB
+
+ARCHIVOS
+- index.html: página web con visor 3D, QR dinámico, acceso a AR y modo VR WebXR.
+- parafran.glb: modelo convertido desde el OBJ proporcionado.
+
+PARA PUBLICAR
+1. Subí index.html y parafran.glb juntos a un hosting estático con HTTPS.
+   Opciones sencillas: Netlify (arrastrar la carpeta) o GitHub Pages.
+2. Abrí la URL pública en un celular o computadora.
+3. El QR se genera automáticamente con la URL actual de la página. Una vez publicada,
+   ese QR abrirá la experiencia desde cualquier celular con cámara.
+4. En Android, usá Chrome y tocá “Abrir experiencia AR” / “Ver en mi espacio”.
+   En iPhone, usá Safari y tocá “Ver en mi espacio” (Quick Look, si está disponible).
+5. En Meta Quest 3S, abrí la URL desde Meta Quest Browser y tocá “Entrar en Realidad Virtual”.
+
+REQUISITOS IMPORTANTES
+- La experiencia AR y WebXR necesitan HTTPS (localhost sirve para pruebas locales).
+- La página carga Three.js, model-viewer y QRCode.js desde CDN; necesita internet.
+- El modo VR requiere un navegador compatible con WebXR, como Meta Quest Browser.
+- El archivo OBJ hacía referencia a parafran.mtl, que no fue incluido. Por eso el GLB
+  conserva la geometría pero puede no conservar materiales/texturas originales.
+- Se excluyó una pieza aislada llamada model_0 porque aparecía muy lejos del conjunto
+  principal en las coordenadas del OBJ. El resto de las 10 piezas se conservaron.
+
+Si necesitás conservar esa pieza aislada o tenés el archivo parafran.mtl y sus texturas,
+se puede regenerar el GLB con todos los materiales y componentes.

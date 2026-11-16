@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#10151d" />
+  <meta name="description" content="Descubrí Meta Quest 3S en 3D: explorá el modelo Parafrán en realidad aumentada desde tu celular o en realidad virtual." />
+  <title>Descubrí Meta Quest 3S en 3D</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    :root { color-scheme: dark; --bg:#10151d; --panel:#19222e; --muted:#aab6c5; --text:#f4f7fb; --accent:#8bd5ca; --line:rgba(255,255,255,.12); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--text); background:radial-gradient(ellipse at 50% -10%,#26384b 0%,var(--bg) 55%); font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+    main { width:min(1120px,100% - 32px); margin:auto; padding:38px 0 54px; }
+    header { text-align:center; margin:0 auto 26px; max-width:720px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.18em; font-size:.76rem; font-weight:750; }
+    h1 { font-size:clamp(2rem,5vw,3.4rem); line-height:1.05; margin:10px 0 12px; letter-spacing:-.04em; }
+    header p { color:var(--muted); margin:0; }
+    .viewer-wrap { overflow:hidden; border:1px solid var(--line); border-radius:24px; background:linear-gradient(145deg,#202c39,#111820); box-shadow:0 24px 80px #0005; }
+    model-viewer { display:block; width:100%; height:min(62vh,600px); min-height:340px; --poster-color:transparent; background:radial-gradient(ellipse at center,#293949 0%,#141d27 68%); }
+    .viewer-hint { padding:10px 18px; text-align:center; color:var(--muted); font-size:.88rem; border-top:1px solid var(--line); }
+    .actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:18px; }
+    .card { padding:22px; border:1px solid var(--line); border-radius:20px; background:#19222ee8; }
+    .card h2 { margin:0 0 6px; font-size:1.18rem; }
+    .card p { margin:0 0 16px; color:var(--muted); font-size:.94rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:50px; padding:12px 18px; border:0; border-radius:13px; color:#10201e; background:var(--accent); font-weight:800; font-size:1rem; text-decoration:none; cursor:pointer; }
+    .btn.secondary { color:var(--text); background:#2b3948; border:1px solid var(--line); }
+    .qr-row { display:flex; gap:18px; align-items:center; margin-top:16px; padding:16px; border:1px dashed #647486; border-radius:16px; }
+    #qrcode { flex:0 0 116px; width:116px; height:116px; padding:7px; background:white; border-radius:10px; display:grid; place-items:center; }
+    #qrcode img, #qrcode canvas { max-width:100%; max-height:100%; }
+    .qr-copy { min-width:0; }
+    .qr-copy strong { display:block; margin-bottom:4px; }
+    .qr-copy small { color:var(--muted); overflow-wrap:anywhere; }
+    .notice { margin-top:18px; padding:14px 16px; border-radius:14px; background:#24313e; color:#c5d1dd; font-size:.88rem; }
+    footer { margin-top:26px; text-align:center; color:#8291a2; font-size:.82rem; }
+    #vr-stage { position:fixed; inset:0; z-index:20; display:none; background:#0b1017; }
+    #vr-stage.active { display:block; }
+    #vr-canvas { display:block; width:100%; height:100%; }
+    #vr-close { position:absolute; z-index:2; top:calc(14px + env(safe-area-inset-top)); right:14px; width:auto; min-height:42px; padding:8px 14px; color:white; background:#273545; border:1px solid #ffffff30; }
+    #vr-status { position:absolute; z-index:2; left:14px; bottom:18px; color:#d5e0eb; background:#111b27cc; padding:8px 12px; border-radius:10px; font-size:.82rem; }
+    #vr-enter { margin-top:10px; }
+    @media (max-width:680px) { main { width:min(100% - 22px,1120px); padding-top:28px; } .actions { grid-template-columns:1fr; } model-viewer { min-height:310px; height:48vh; } .card { padding:18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Experiencia interactiva</div>
+    <h1>Descubrí Meta Quest 3S en 3D</h1>
+    <p>Explorá el modelo, acercate a los detalles y elegí cómo querés vivir la experiencia.</p>
+  </header>
+
+  <section class="viewer-wrap" aria-label="Modelo 3D interactivo">
+    <model-viewer id="model" src="./parafran.glb" alt="Modelo 3D de Parafrán" camera-controls touch-action="pan-y" auto-rotate rotation-per-second="18deg" shadow-intensity="1" exposure="1" ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" loading="eager">
+      <button slot="ar-button" class="btn" style="position:absolute;left:5%;right:5%;bottom:18px;width:90%;">Ver en mi espacio (AR)</button>
+      <div slot="progress-bar" style="display:none"></div>
+    </model-viewer>
+    <div class="viewer-hint">Arrastrá para girar · Pellizcá o usá la rueda para acercar</div>
+  </section>
+
+  <section class="actions">
+    <article class="card">
+      <h2>📱 Realidad aumentada</h2>
+      <p>Escaneá el QR con la cámara del celular. Después tocá “Ver en mi espacio” para ubicar el modelo en el entorno real.</p>
+      <button class="btn" id="ar-button" type="button">Abrir experiencia AR</button>
+      <div class="qr-row">
+        <div id="qrcode" aria-label="Código QR para abrir esta experiencia"></div>
+        <div class="qr-copy"><strong>Escaneá para abrir</strong><small id="page-url">El QR se genera con la dirección pública de esta página.</small></div>
+      </div>
+    </article>
+    <article class="card">
+      <h2>🥽 Realidad virtual · Meta Quest 3S</h2>
+      <p>Abrí esta misma página en el navegador del casco y entrá al modo VR inmersivo.</p>
+      <button class="btn" id="vr-enter" type="button">Entrar en Realidad Virtual</button>
+      <div class="notice">Requiere Meta Quest Browser, conexión a internet y que la página esté publicada con HTTPS. En el casco, permití el acceso a experiencias inmersivas si aparece el aviso.</div>
+    </article>
+  </section>
+  <footer>Experiencia 3D · Compatible con navegadores modernos</footer>
+</main>
+
+<div id="vr-stage" aria-hidden="true">
+  <button class="btn" id="vr-close" type="button">Salir del visor</button>
+  <canvas id="vr-canvas"></canvas>
+  <div id="vr-status">Preparando experiencia VR…</div>
+</div>
+
+<script>
+  const modelViewer = document.querySelector('#model');
+  document.querySelector('#ar-button').addEventListener('click', async () => {
+    if (modelViewer.canActivateAR) await modelViewer.activateAR();
+    else alert('La realidad aumentada no está disponible en este navegador. Probá con Chrome en Android o Safari en iPhone.');
+  });
+
+  const currentUrl = window.location.href.split('#')[0];
+  document.querySelector('#page-url').textContent = currentUrl;
+  if (window.QRCode) {
+    new QRCode(document.querySelector('#qrcode'), { text: currentUrl, width: 102, height: 102, colorDark: '#10151d', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+  } else {
+    document.querySelector('#qrcode').textContent = 'QR no disponible';
+  }
+
+  // Preload the WebXR scene before the user presses the VR button.
+  let renderer, scene, camera, vrButton, vrReady = false;
+  const stage = document.querySelector('#vr-stage');
+  const status = document.querySelector('#vr-status');
+  const closeButton = document.querySelector('#vr-close');
+  const enterVR = document.querySelector('#vr-enter');
+  enterVR.disabled = true;
+  enterVR.textContent = 'Preparando experiencia VR…';
+  enterVR.style.opacity = '.65';
+
+  async function prepareVR() {
+    try {
+      const [THREE, gltfModule, vrModule] = await Promise.all([
+        import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'),
+        import('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js'),
+        import('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/webxr/VRButton.js')
+      ]);
+      const { GLTFLoader } = gltfModule;
+      const { VRButton } = vrModule;
+      scene = new THREE.Scene(); scene.background = new THREE.Color(0x111a24);
+      camera = new THREE.PerspectiveCamera(70, innerWidth/innerHeight, 0.01, 100);
+      camera.position.set(0, 1.6, 3.2);
+      renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#vr-canvas'), antialias:true, alpha:false });
+      renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setSize(innerWidth,innerHeight);
+      renderer.xr.enabled = true; renderer.xr.setReferenceSpaceType('local-floor');
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      scene.add(new THREE.HemisphereLight(0xffffff,0x526070,2));
+      const key = new THREE.DirectionalLight(0xffffff,2.2); key.position.set(3,5,4); scene.add(key);
+      const floor = new THREE.Mesh(new THREE.CircleGeometry(3,64), new THREE.MeshStandardMaterial({color:0x263442,roughness:.9}));
+      floor.rotation.x=-Math.PI/2; floor.position.y=-0.015; scene.add(floor);
+      const loader = new GLTFLoader();
+      const gltf = await new Promise((resolve,reject)=>loader.load('./parafran.glb',resolve,undefined,reject));
+      scene.add(gltf.scene);
+      const grid = new THREE.GridHelper(6,24,0x526475,0x344454); grid.position.y=0.001; scene.add(grid);
+      window.addEventListener('resize',()=>{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); });
+      renderer.setAnimationLoop(()=>renderer.render(scene,camera));
+      vrButton = VRButton.createButton(renderer);
+      vrButton.style.display='none'; document.body.appendChild(vrButton);
+      renderer.xr.addEventListener('sessionstart',()=>{ stage.classList.add('active'); stage.setAttribute('aria-hidden','false'); status.textContent='Estás dentro de la experiencia VR'; });
+      renderer.xr.addEventListener('sessionend',()=>{ stage.classList.remove('active'); stage.setAttribute('aria-hidden','true'); status.textContent='Experiencia finalizada'; });
+      vrReady = true;
+      enterVR.disabled = false; enterVR.textContent = 'Entrar en Realidad Virtual'; enterVR.style.opacity = '1';
+    } catch (error) {
+      console.error(error);
+      enterVR.textContent = 'VR no disponible en este navegador';
+      status.textContent = 'No se pudo preparar la escena VR';
+    }
+  }
+  prepareVR();
+
+  enterVR.addEventListener('click', () => {
+    if (!vrReady) return;
+    if (!navigator.xr) {
+      alert('Este navegador no ofrece WebXR. Abrí la página desde Meta Quest Browser en tu Quest 3S.');
+      return;
+    }
+    // Keep this call synchronous within the real tap/click user gesture.
+    vrButton.click();
+  });
+
+  closeButton.addEventListener('click', async () => {
+    if (renderer && renderer.xr.isPresenting) await renderer.xr.getSession().end();
+    else { stage.classList.remove('active'); stage.setAttribute('aria-hidden','true'); }
+  });
+</script>
+</body>
+</html>
